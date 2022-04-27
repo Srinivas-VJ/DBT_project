@@ -15,7 +15,8 @@ access_secret = "WLzqah0oGNN46KpYlWZpcETU7NUPJI9ng3SvFVkqhfV12"
 
 class TweetsListener(tweepy.Stream):
 
-    def __init__(self, csocket):
+    def __init__(self, csocket, *args):
+        super().__init__(*args)
         self.client_socket = csocket
     # we override the on_data() function in StreamListener
     def on_data(self, data):
@@ -37,7 +38,7 @@ def send_tweets(c_socket):
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_secret)
     
-    twitter_stream = Stream(auth, TweetsListener(c_socket),access_token,access_secret)
+    twitter_stream = TweetsListener(c_socket,consumer_key,consumer_secret,access_token,access_secret)
     twitter_stream.filter(track=['football']) #we are interested in this topic.
 
 
