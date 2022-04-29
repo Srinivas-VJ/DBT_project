@@ -40,8 +40,8 @@ def send_to_kafka(rows):
         # Successful result returns assigned partition and offset
         # t = bytes(count);
         v= {rows[0]:rows[1]}
-
-        producer.send('test',value=v)
+        if(word == '#IPL' or word == '#MI' or word == '#CSK'):
+            producer.send(word[1:],value=v)
             #producer.flush()
 
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     
     sc = SparkContext("local[2]", "NetworkWordCount")
     ssc = StreamingContext(sc, 1)
-    lines = ssc.socketTextStream("localhost", 5555)
+    lines = ssc.socketTextStream("localhost", 5556)
     words = lines.flatMap(lambda line: line.split(" "))
     pairs = words.map(lambda word: (word, 1))
     wordCounts = pairs.reduceByKey(lambda x, y: x + y)

@@ -48,7 +48,7 @@ def send_tweets(c_socket):
 if __name__ == "__main__":
     new_skt = socket.socket()         # initiate a socket object
     host = "127.0.0.1"     # local machine address
-    port = 5555               # specific port for your service.
+    port = 5556               # specific port for your service.
     new_skt.bind((host, port))        # Binding host and port
 
     print("Now listening on port: %s" % str(port))
