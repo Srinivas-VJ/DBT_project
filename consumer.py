@@ -2,7 +2,10 @@ from kafka import KafkaConsumer
 from json import loads;
 
 # To consume latest messages and auto-commit offsets
-consumer = KafkaConsumer('IPL',
+consumer = KafkaConsumer('TATAIPL',
+                         group_id='my-group',
+                         bootstrap_servers=['localhost:9092'], value_deserializer=lambda x: loads(x.decode('utf-8')))
+consumer1 = KafkaConsumer('IPL',
                          group_id='my-group',
                          bootstrap_servers=['localhost:9092'], value_deserializer=lambda x: loads(x.decode('utf-8')))
 consumer2 = KafkaConsumer('MI',

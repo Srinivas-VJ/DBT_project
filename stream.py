@@ -40,8 +40,9 @@ def send_to_kafka(rows):
         # Successful result returns assigned partition and offset
         # t = bytes(count);
         v= {rows[0]:rows[1]}
-        if(word == '#IPL' or word == '#MI' or word == '#CSK'):
-            producer.send(word[1:],value=v)
+        if(word == 'IPL' or word == "TATAIPL" or word == 'LSG' or word == 'PBKS'):
+            producer.send(word,value=v)
+            print("============================got a tweet==================================");
             #producer.flush()
 
 
