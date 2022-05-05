@@ -5,6 +5,7 @@ import socket
 import json
 import os
 
+
 class TweetsListener(tweepy.Stream):
 
     def __init__(self, csocket, *args):
@@ -32,24 +33,24 @@ def send_tweets(c_socket):
 
     twitter_stream = TweetsListener(
         c_socket, consumer_key, consumer_secret, access_token, access_secret)
-    
+
     twitter_stream.filter(track=['ipl'])
 
 
 if __name__ == "__main__":
-    consumer_key = "kfLBGa8SzFFVXb8yDD05ujFBK"
-    consumer_secret = "eeRF19jxEastmCtp0CYj4X86ZKfiOCNb6KzAnXGmJdrQN7q2vO"
-    access_token = "942255638205177858-KiRafYc6uQDkCmXUIracz3ljk6KT6NM"
-    access_secret = "WLzqah0oGNN46KpYlWZpcETU7NUPJI9ng3SvFVkqhfV12"
-    new_skt = socket.socket()         
-    host = "127.0.0.1"     
-    port = 5556              
-    new_skt.bind((host, port))       
+    consumer_key = "add  here"
+    consumer_secret = "add  here"
+    access_token = "add  here"
+    access_secret = "add  here"
+    new_skt = socket.socket()
+    host = "127.0.0.1"
+    port = 5556
+    new_skt.bind((host, port))
 
     print("port: %s" % str(port))
 
-    new_skt.listen(5) 
-  
+    new_skt.listen(5)
+
     c, addr = new_skt.accept()
 
     print("got request: " + str(addr))
